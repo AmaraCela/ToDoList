@@ -127,16 +127,37 @@ p{
     position: fixed;
     z-index: 30;
     height: 300px;
-    width: 300px;
+    width: 350px;
     top: 160px;
     left: 40%;
-    background-color: red;
+    background-color: #ee4892;
     display: none;
+    box-shadow: 5px 5px 5px pink;
 }
 
+.top-popup{
+    display: flex;
+    justify-content: space-between;
+}
+
+#popup-title{
+    text-align: center;
+    margin-left: 10px;
+}
+
+#x{
+    font-weight: bold;
+    font-size: 20px;
+    
+}
 
 #close{
     cursor: pointer;
+}
+
+#popup-description{
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 /*add to do page*/

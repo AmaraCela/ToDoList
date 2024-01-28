@@ -214,11 +214,13 @@ function enablePopup()
             let h3 = document.getElementById("popup-title");
             h3.innerText = title;
             let p = document.getElementById("popup-description");
-            p.innerText = description;
-
-            
-            console.log(document.getElementsByClassName("popup")[0]);
-            
+            if(description=="")
+            {
+                p.innerText = "No description available for this task..."
+            }
+            else{
+                p.innerText = description;
+            }
             (document.getElementsByClassName("popup")[0]).style.display = "block";
             
         });
@@ -237,3 +239,19 @@ function enablePopup()
         return null;
     }
 }
+
+function togglePopup()
+{
+    let close = document.getElementById("x");
+    close.addEventListener("click",()=>{
+        if(close.parentElement.parentElement.parentElement.style.display=='none')
+        {
+            close.parentElement.parentElement.parentElement.style.display='block';
+        }
+        else{
+            close.parentElement.parentElement.parentElement.style.display='none';
+        }
+    });
+}
+
+togglePopup();
