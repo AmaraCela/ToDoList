@@ -2,9 +2,11 @@ export class Topic{
     static nrOfTopics= 0;
     constructor(name)
     {
-        this.id = Topic.nrOfTopics;
+        
+        this.id = Topic.nrOfTopics++;
+        console.log("topic id");
+        console.log(this.id)
         this.name = name;
-        Topic.nrOfTopics++;
     }
 }
 

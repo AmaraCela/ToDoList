@@ -5,7 +5,7 @@ let topicsDiv = document.getElementById("add-to-topics-div");
 let newTopicInput = document.getElementById("new-topic");
 let topics ={};
 
-
+localStorage.clear();
 function fetchTopics()
 {
     topics = {};
@@ -25,11 +25,10 @@ function fetchTopics()
 
 function populateTopics()
 {
-    fetchTopics();
     clearTopics();
+    fetchTopics();
+    
     topicsDiv.appendChild(document.createElement("br"));
-    console.log("topics first");
-    console.log(allTodos);
     for(let [id,name] of Object.entries(topics))
     {   
         let input = document.createElement("input");
@@ -107,37 +106,33 @@ function validateInputs(event)
         let newTodo; 
         if (topicId==null)
         {
+
             topicName = newTopicInput.value;
             if(topicName!="")
             {
                 let found = findTopicByName(topicName);
                 if(found==null)
                 {
-                    console.log("topic not founc")
-                     newTodo = new ToDo(newTitle,newDescription,new Topic(topicName),newDate);
+                    newTodo = new ToDo(newTitle,newDescription,new Topic(topicName),newDate);
                 }
                 else{
-                    console.log("topic founc")
                     newTodo = new ToDo(newTitle,newDescription,found,newDate);
                 }
                
             }
             else
             {
-                console.log("null as topic")
                 newTodo = new ToDo(newTitle,newDescription,null,newDate);
             }
         }
         else
         {
-            console.log("existing topic from radio")
             newTodo = new ToDo(newTitle,newDescription,topics[id],newDate);
         }
         if(newTodo)
         {
             
             allTodos.push(newTodo);
-            console.log(allTodos);
             populateTopics();
             localStorage.setItem('todos', JSON.stringify(allTodos));
             event.preventDefault();
