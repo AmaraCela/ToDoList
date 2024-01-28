@@ -21,6 +21,7 @@ function fetchTopics()
 }
 
 fetchTopics();
+displayContent(-2);
 
 for (let [id,name] of Object.entries(topics))
 {

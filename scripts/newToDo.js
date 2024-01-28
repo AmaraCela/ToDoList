@@ -5,7 +5,7 @@ let topicsDiv = document.getElementById("add-to-topics-div");
 let newTopicInput = document.getElementById("new-topic");
 let topics ={};
 
-// localStorage.clear();
+
 function fetchTopics()
 {
     topics = {};
@@ -140,7 +140,8 @@ function validateInputs(event)
             console.log(allTodos);
             populateTopics();
             localStorage.setItem('todos', JSON.stringify(allTodos));
-            // event.preventDefault();
+            event.preventDefault();
+            location.reload();
             return true;
         }
         
