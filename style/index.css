@@ -1,0 +1,214 @@
+body{
+    margin: 0;
+}
+p{
+    margin: 0;
+}
+
+#img-logo{
+    display: flex;
+    height: 62px;
+    width: 65px;
+}
+
+.navbar{
+    display: flex;
+    height: 100px;
+    width: 100%;
+    background-color: rgba(129, 141, 146, 0.55);
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.logo{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    margin-left: 20px;
+
+}
+
+#title{
+    font-family: 'Oregano', cursive;
+    font-weight: bold;
+    font-size: 35px;
+    margin-left: 10px;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 0;
+    text-decoration: none;
+    color: black;
+}
+
+.navbar-link{
+    text-decoration: none;
+    font-family: 'Oregano', cursive;
+    font-weight: bold;
+    font-size: 30px;
+    margin-right: 40px;
+    color: black;
+}
+
+.side-div{
+    width: 20%;
+    background-color: rgba(129, 141, 146, 0.55);
+    display: grid;
+    height: 90vh;
+
+}
+
+.side-link{
+    text-decoration: none;
+    font-family: 'Oregano', cursive;
+    font-size: 20px;
+    margin-left: 30px;
+    color: black;
+    width: fit-content;
+    line-height: 40px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.delete{
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+}
+.body-div{
+    display: flex;
+    flex-direction: row;
+}
+
+#arrow{
+    display: inline;
+    font-weight: 900;
+    margin-left: 15px;
+    font-size: 20px;
+    
+}
+
+#topic-p{
+    display: inline;
+    font-size: 20px;
+    font-family: 'Oregano', cursive;
+}
+
+#topics-div{
+    display: none;
+}
+
+#expand-div{
+    cursor: pointer;
+}
+
+#main-title{
+    font-family: cursive;
+    font-size: 30px;
+    margin: 20px;
+}
+
+#todos-div{
+    margin: 20px;
+}
+
+.main-div{
+    width: 100%;
+}
+
+.todo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.popup{
+    position: fixed;
+    z-index: 30;
+    height: 300px;
+    width: 300px;
+    top: 160px;
+    left: 40%;
+    background-color: red;
+    display: none;
+}
+
+
+#close{
+    cursor: pointer;
+}
+
+/*add to do page*/
+
+#addToDoBody{
+    background-color: rgba(236, 72, 145, 0.3);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+#to-do-div{
+    height: fit-content;
+    width: 70%;
+    background-color: rgba(36, 43, 46, 0.17);
+    position: relative;
+    top: 70px;
+    box-shadow: 3px 3px 5px grey;
+    margin-bottom: 30px;
+}
+
+#new-p{
+    text-align: center;
+    font-family: 'Oregano',cursive;
+    font-size: 20px;
+}
+
+#hr{
+    margin-top: 0;
+    width: 20%;
+    border: 1px solid black;
+    transform: rotate(356deg);
+}
+
+.inputs-div{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+.input-labels{
+    font-family: 'Oregano',cursive;
+    
+}
+
+#include-topic{
+    width: fit-content;
+    margin: 0;
+}
+
+
+#checkbox-label{
+margin-left: 20px;
+}
+
+.checkbox-div{
+    display: flex;
+}
+
+#add-to-topics-div{
+    display: none;
+}
+
+input[type="radio"]
+{
+    margin-left: 0;
+}
+
+#save-btn{
+    margin: 20px 0px 10px 0px;
+    width: 50px;
+}
+
