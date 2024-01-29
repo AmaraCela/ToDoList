@@ -16,7 +16,14 @@ export class ToDo {
         this.title = title;
         this.description = description;
         this.topic = topic;
-        this.date = date;
+        if(date.length<1)
+        {
+            this.date = null;
+        }
+        else{
+            this.date = date;
+        }
+        
         this.done = false;
         localStorage.setItem('nrOfToDos', ToDo.nrOfToDos.toString());
     }

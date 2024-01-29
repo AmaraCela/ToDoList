@@ -91,7 +91,7 @@ function validateInputs(event)
     if(validateTitle())
     {
         let newDescription = description.value;
-        let newDate = new Date(date.value);
+        let newDate = date.value;
         let topicId = radioFunctionality();
         let topicName;
         let newTodo; 
@@ -103,26 +103,21 @@ function validateInputs(event)
                 let found = findTopicByName(topicName);
                 if(found==null)
                 {
-                    console.log("new topic created from text")
                     newTodo = new ToDo(newTitle,newDescription,new Topic(topicName),newDate);
                 }
                 else{
-                    console.log("old topic was found from text")
+                   
                     newTodo = new ToDo(newTitle,newDescription,found,newDate);
                 }
                
             }
             else
             {
-                console.log("topic name was null")
                 newTodo = new ToDo(newTitle,newDescription,null,newDate);
             }
         }
         else
         {
-
-            console.log("radio clicked")
-            console.log(topics[topicId])
             newTodo = new ToDo(newTitle, newDescription, {'id':topicId, 'name':topics[topicId]}, newDate);
         }
         if(newTodo)
@@ -148,10 +143,6 @@ function validateTitle()
     newTitle = title.value;
     return newTitle.length >= 1;
 }
-
-
-
-// document.getElementById("save-btn").addEventListener("click",validateInputs);
 document.getElementById("todo-form").addEventListener("submit",(event)=>{validateInputs(event)});
 
 function checkIfSelected()

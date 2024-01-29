@@ -106,8 +106,12 @@ function displayContent(id)
             p.for = "checkbox "+id;
             let p1 = document.createElement("p");
             p1.classList.add("date");
-            let date = new Date(element.date);
-            p1.innerText = date.toDateString();
+            if(element.date)
+            {
+                let date = new Date(element.date); 
+                p1.innerText = date.toDateString();
+            }
+            
             let del = document.createElement("img");
             del.src = "../assets/delete.png";
             del.classList.add("delete");
