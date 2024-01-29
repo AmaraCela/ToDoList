@@ -150,8 +150,8 @@ document.getElementById("todo-form").addEventListener("submit",(event)=>{validat
 
 function checkIfSelected()
 {
-    let inputs = topicsDiv.children;
-    for (let input of inputs)
+    const inputs = topicsDiv.children;
+    for (const input of inputs)
     {
         input.addEventListener("click",()=>{
             if (input.checked)
@@ -165,8 +165,8 @@ function checkIfSelected()
 
 function radioFunctionality()
 {
-    let inputs = topicsDiv.children;
-    for (let input of inputs)
+    const inputs = topicsDiv.children;
+    for (const input of inputs)
     {
             if (input.checked)
             {
@@ -181,8 +181,8 @@ function radioFunctionality()
 function typeTopic()
 {
     newTopicInput.addEventListener("click",()=>{
-        let inputs = topicsDiv.children;
-    for (let input of inputs)
+        const inputs = topicsDiv.children;
+    for (const input of inputs)
     {
         input.checked = false;  
         
@@ -192,7 +192,7 @@ function typeTopic()
 
 function findTopicByName(tName)
 {
-    for(let [id,name] of Object.entries(topics))
+    for(const [id,name] of Object.entries(topics))
     {
         if(tName == name)
         {

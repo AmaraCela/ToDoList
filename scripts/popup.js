@@ -1,22 +1,22 @@
 import { allTodos } from "./toDos.js";
-let todos = document.getElementsByClassName("todo");
+const todos = document.querySelectorAll(".todo");
 
 
-for(let todo of todos)
+for(const todo of todos)
 {
     todo.addEventListener("click",()=>{
-        let popup = document.createElement("div");
+        const popup = document.createElement("div");
         popup.classList.add("popup");
 
         popup.style.position = "fixed";
-        let foundTodo = findToDo(todo.id);
-        let title = foundTodo.title;
-        let description = foundTodo.description;
+        const foundTodo = findToDo(todo.id);
+        const title = foundTodo.title;
+        const description = foundTodo.description;
 
-        let h3 = document.createElement("h3");
-        h3.innerText = title;
-        let p = document.createElement("p");
-        p.innerText = description;
+        const h3 = document.createElement("h3");
+        h3.textContent = title;
+        const p = document.createElement("p");
+        p.textContent = description;
 
         popup.appendChild(h3);
         popup.appendChild(p);
@@ -27,7 +27,7 @@ for(let todo of todos)
 
 function findToDo(id)
 {
-    for(let todo of allTodos)
+    for(const todo of allTodos)
     {
         if(todo.id==id)
         {

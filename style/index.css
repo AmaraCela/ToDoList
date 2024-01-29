@@ -1,6 +1,7 @@
-body{
+.index-body{
     margin: 0;
 }
+
 p{
     margin: 0;
 }
@@ -75,6 +76,7 @@ p{
     width: 20px;
     cursor: pointer;
 }
+
 .body-div{
     display: flex;
     flex-direction: row;
@@ -168,6 +170,7 @@ p{
     bottom: -200px;
     right: -90px;
 }
+
 @media screen and (max-width:810px) {
     .side-div{
         width: 30%;
@@ -178,12 +181,15 @@ p{
     .side-div{
         width: 35%;
     }
+
     .date{
         display: none;
     }
+
     .side-link{
         font-size: 15px;
     }
+
     #topic-p{
         font-size: 15px;
     }

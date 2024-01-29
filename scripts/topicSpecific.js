@@ -1,6 +1,6 @@
-let arrow = document.getElementById("arrow");
-let expandDiv = document.getElementById("expand-div");
-let topicsDiv = document.getElementById("topics-div");
+const arrow = document.querySelector("#arrow");
+const expandDiv = document.querySelector("#expand-div");
+const topicsDiv = document.querySelector("#topics-div");
 
 function rotateArrow()
 {
