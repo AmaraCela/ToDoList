@@ -4,9 +4,7 @@ let todos = document.getElementsByClassName("todo");
 
 for(let todo of todos)
 {
-    console.log("yeah")
     todo.addEventListener("click",()=>{
-        console.log("clicked")
         let popup = document.createElement("div");
         popup.classList.add("popup");
 
@@ -23,8 +21,6 @@ for(let todo of todos)
         popup.appendChild(h3);
         popup.appendChild(p);
         document.body.appendChild(popup);
-
-
     });
 }
 

@@ -48,13 +48,17 @@ function displayContent(id)
 
     toDosToDisplay = [];
     todosDiv.innerHTML = '';
-    if(id=="-2")
+    if(id=="-3")
+    {
+        mainTitle.innerText = "All ToDos";
+        toDosToDisplay = allTodos;
+    }
+    else if(id=="-2")
     {
         mainTitle.innerText = "Today's tasks";
-       loadTodaysTasks();
+        loadTodaysTasks();
        
-       toDosToDisplay = todaysTaks;
-       console.log(toDosToDisplay);
+        toDosToDisplay = todaysTaks;
     }
     else if(id=="-1")
     {
@@ -93,14 +97,12 @@ function displayContent(id)
                 input.classList.add("done"); 
                 input.checked = true;
             }
-            else{
-                console.log(element.done)
-            }
            
             let p = document.createElement("label");
             p.innerText = element.title;
             p.for = "checkbox "+id;
             let p1 = document.createElement("p");
+            p1.classList.add("date");
             let date = new Date(element.date);
             p1.innerText = date.toDateString();
             let del = document.createElement("img");
@@ -194,7 +196,6 @@ function deleteTasks()
 function loadTodaysTasks()
 {
     todaysTaks = [];
-    console.log(allTodos);
     for(const element of allTodos)
     {
         let date = new Date(element.date);
