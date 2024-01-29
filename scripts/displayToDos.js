@@ -1,13 +1,8 @@
 import { allTodos } from "./toDos.js";
-let mainTitle = document.getElementById("main-title");
-
-let sideDiv = document.getElementById("topics-div");
-let todosDiv = document.getElementById("todos-div");
+const mainTitle = document.getElementById("main-title");
+const sideDiv = document.getElementById("topics-div");
+const todosDiv = document.getElementById("todos-div");
 let topics = {};
-
-let todaysTaks = [];
-
-let toDosToDisplay = [];
 
 function fetchTopics()
 {
@@ -24,29 +19,36 @@ function fetchTopics()
 }
 
 fetchTopics();
-displayContent(-2);
+sideLinksClicked(-2);
 sideDiv.innerHTML = '';
-for (let [id,name] of Object.entries(topics))
+
+
+function addLinksToSideDiv()
 {
-    let p = document.createElement("p");
-    p.classList.add("side-link");
-    p.innerText = name;
-    p.id = id;
-    sideDiv.appendChild(p);
+    for (const [id,name] of Object.entries(topics))
+    {
+        const p = document.createElement("p");
+        p.classList.add("side-link");
+        p.innerText = name;
+        p.id = id;
+        sideDiv.appendChild(p);
+    }  
 }
 
-let sideLinks = document.getElementsByClassName("side-link");
+addLinksToSideDiv();
+
+
+const sideLinks = document.getElementsByClassName("side-link");
 for(let link of sideLinks)
 {
     link.addEventListener("click",()=>{
-        displayContent(link.id);
+        sideLinksClicked(link.id);
     })
 }
 
-function displayContent(id)
+function sideLinksClicked(id)
 {
-
-    toDosToDisplay = [];
+    let toDosToDisplay = [];
     todosDiv.innerHTML = '';
     if(id=="-3")
     {
@@ -56,36 +58,26 @@ function displayContent(id)
     else if(id=="-2")
     {
         mainTitle.innerText = "Today's tasks";
-        loadTodaysTasks();
-       
-        toDosToDisplay = todaysTaks;
+        toDosToDisplay = loadTodaysTasks();
     }
     else if(id=="-1")
     {
         mainTitle.innerText = "Completed tasks";
-        for(let element of allTodos)
-        {
-            if(element.done == true)
-            {
-                toDosToDisplay.push(element);
-            }
-        }
+        toDosToDisplay = loadDoneToDos();
     }
     else{
-    mainTitle.innerText = topics[id]+" tasks";
-    toDosToDisplay = [];
-    for(let element of allTodos)
-    {
-        if(element.topic)
-        {
-        if(element.topic.id==id)
-        {
-            toDosToDisplay.push(element);  
-        }
+        mainTitle.innerText = topics[id]+" tasks";
+        toDosToDisplay = loadTopicSpecificToDos(id);
     }
-    }
-   
-    }
+    displayToDos(id,toDosToDisplay);
+    markAsDone();
+    deleteTasks();
+    enablePopup();
+}
+
+
+function displayToDos(id, toDosToDisplay)
+{
     for(let element of toDosToDisplay)
     {
         let div = document.createElement("div");
@@ -95,7 +87,7 @@ function displayContent(id)
             input.type = "checkbox";
             input.id = "checkbox "+id;
             input.classList.add("done-checkbox");
-            if(element.done == true)
+            if(element.done)
             {
                 input.classList.add("done"); 
                 input.checked = true;
@@ -123,9 +115,6 @@ function displayContent(id)
             todosDiv.appendChild(div);
             todosDiv.appendChild(document.createElement("hr"));
     }
-    markAsDone();
-    deleteTasks();
-    enablePopup();
 }
 
 function markAsDone()
@@ -137,31 +126,30 @@ function markAsDone()
             let id = checkbox.parentElement.id;
             if(checkbox.classList.length == 1)
             {
-           
-            for(let todo of allTodos)
-            {
-                if(todo.id==id)
-                {
-                    todo.done = true;
-                    checkbox.classList.add("done");
-                }
-            }
+                toggleToDoCompletion(true,id);
+                checkbox.classList.add("done");
             }
             else{
-                for(let todo of allTodos)
-                {
-                    if(todo.id==id)
-                    {
-                        todo.done = false;
-                        checkbox.classList.remove("done");
-                    }
-                }
+                toggleToDoCompletion(false,id);
+                checkbox.classList.remove("done");
             }
             localStorage.setItem('todos', JSON.stringify(allTodos));
         });
     }
 }
 
+
+function toggleToDoCompletion(value,id)
+{
+    for(let todo of allTodos)
+    {
+        if(todo.id==id)
+        {
+            todo.done = value;
+            
+        }
+    }
+}
 
 function findPosition(tid)
 {
@@ -178,6 +166,34 @@ function findPosition(tid)
 }
 
 
+function loadDoneToDos()
+{
+    let todos = []
+    for(let element of allTodos)
+        {
+            if(element.done)
+            {
+                todos.push(element);
+            }
+        }
+    return todos;
+}
+
+function loadTopicSpecificToDos(id)
+{
+    let todos = [];
+    for(let element of allTodos)
+    {
+        if(element.topic)
+        {
+            if(element.topic.id==id)
+            {
+                todos.push(element);  
+            }
+        }
+    }
+    return todos;
+}
 
 function deleteTasks()
 {
@@ -188,13 +204,12 @@ function deleteTasks()
         button.addEventListener("click",()=>{
             let id = button.classList[1];
             let position = findPosition(id);
-            // let topic = allTodos[position].topic.id;
             if(position!=null)
             {
                 allTodos.splice(position,1);
                 localStorage.setItem('todos', JSON.stringify(allTodos));
                 fetchTopics();
-                displayContent("-2");
+                sideLinksClicked("-2");
             }
         });
     }
@@ -202,7 +217,7 @@ function deleteTasks()
 
 function loadTodaysTasks()
 {
-    todaysTaks = [];
+    let todaysTaks = [];
     for(const element of allTodos)
     {
         let date = new Date(element.date);
@@ -211,6 +226,7 @@ function loadTodaysTasks()
             todaysTaks.push(element);
         }
     }
+    return todaysTaks;
 }
 
 loadTodaysTasks();
