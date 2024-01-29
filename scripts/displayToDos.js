@@ -76,10 +76,13 @@ function displayContent(id)
     toDosToDisplay = [];
     for(let element of allTodos)
     {
+        if(element.topic)
+        {
         if(element.topic.id==id)
         {
             toDosToDisplay.push(element);  
         }
+    }
     }
    
     }

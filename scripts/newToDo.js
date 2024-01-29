@@ -97,11 +97,9 @@ function validateInputs(event)
         let newTodo; 
         if (topicId==null)
         {
-
             topicName = newTopicInput.value;
             if(topicName!="")
             {
-                
                 let found = findTopicByName(topicName);
                 if(found==null)
                 {
@@ -132,8 +130,6 @@ function validateInputs(event)
             
             allTodos.push(newTodo);
             localStorage.setItem('todos', JSON.stringify(allTodos));
-            console.log("all todos")
-            console.log(allTodos)
             populateTopics();
             event.preventDefault();
             location.reload();
