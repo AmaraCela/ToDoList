@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Add</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=ABeeZee&family=Lobster&family=Oregano&family=Quicksand&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../style/index.css">
+        <script defer type="module" src="../scripts/newToDo.js"></script>
+    </head>
+    <body id="addToDoBody">
+        <nav class="navbar">
+            <div class="logo">
+                <img id="img-logo" src="../assets/checkMark.png" alt="">
+                <a href="../views/index.html" id="title">TO-DOs</a>
+            </div>
+            <div class="links">
+            <a class="navbar-link" href="">Add new ToDo</a>
+            </div>
+        </nav>
+        <div id="to-do-div">
+            <form id="todo-form" method="POST">
+                <p id="new-p">New To-Do</p>
+                <hr id="hr">
+                <div class="inputs-div">
+                    <label class="input-labels" for="input">Set a title:</label>
+                    <input class="inputs" name="title" id="title-input" type="text" required>
+                    <br>
+                
+                    <label class="input-labels" for="description-input">Add a description:</label>
+                    <textarea class="inputs" name="description" id="description-input" cols="40" rows="6"></textarea>
+                    <br>
+
+                    <label class="input-labels" for="date">Add a finishing date:</label>
+                    <input class="inputs" type="date" id="date">
+                    <br>
+
+                    <!-- Remove unused code do not comment it -->
+
+                    <!-- <label class="input-labels" for="time">Finishing time:</label>
+                    <input class="inputs" type="time" name="time" id="time">
+                    <br> -->
+
+                    <div class="checkbox-div">
+                    <input type="checkbox" name="topic" id="include-topic">
+                    <label class="input-labels" id="checkbox-label" for="include-topic">Include in a topic</label>
+                    </div>
+                    <br>
+                    <div id="add-to-topics-div">
+                        <!-- <input type="radio" name="topic" id="toDoApp">
+                        <label for="toDoApp">To Do App</label>
+                        <br>
+                        <input type="radio" name="topic" id="topic2">
+                        <label for="topic2">Topic 2</label><br><br> -->
+                        <input type="text" name="" id="new-topic" placeholder="New Topic">
+                        <br>
+                    </div>
+                    <input type="submit" name="" id="save-btn" value="Save">
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
