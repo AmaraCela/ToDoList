@@ -5,7 +5,9 @@ let topicsDiv = document.getElementById("add-to-topics-div");
 let newTopicInput = document.getElementById("new-topic");
 let topics ={};
 
-localStorage.clear();
+// localStorage.clear();
+
+
 function fetchTopics()
 {
     topics = {};
@@ -28,12 +30,10 @@ function populateTopics()
     clearTopics();
     fetchTopics();
     
-    topicsDiv.appendChild(document.createElement("br"));
     for(let [id,name] of Object.entries(topics))
     {   
         let input = document.createElement("input");
         input.type = "radio";
-        input.name = "topic";
         input.id = id;
         input.classList.add("topic-input");
         let label = document.createElement("label");
@@ -44,12 +44,6 @@ function populateTopics()
         topicsDiv.appendChild(label);
         topicsDiv.appendChild(document.createElement("br"));
     }
-    // let input = document.createElement("input");
-    // input.type = "text";
-    // input.name = "new-topic";
-    // input.placeholder = "New Topic";
-    // topicsDiv.appendChild(input);
-   
     checkIfSelected();
     typeTopic();
 
@@ -57,15 +51,13 @@ function populateTopics()
 
 populateTopics();
 
-function clearTopics()
-{
-  let children = topicsDiv.getElementsByClassName("topic-input");
-  for(let child of children)
-  {
-    topicsDiv.removeChild(child);
-  }
-
+function clearTopics() {
+    let children = Array.from(document.getElementsByClassName("topic-input"));
+    for (let child of children) {
+        topicsDiv.removeChild(child);
+    }
 }
+
 
 function toggleVisibility(element)
 {
@@ -91,7 +83,6 @@ checkboxClick();
 let title = document.getElementById("title-input");
 let description = document.getElementById("description-input");
 let date = document.getElementById("date");
-// let time = document.getElementById("time");
 let newTitle;
 
 
@@ -101,7 +92,7 @@ function validateInputs(event)
     {
         let newDescription = description.value;
         let newDate = new Date(date.value);
-        let topicId = checkIfSelected();
+        let topicId = radioFunctionality();
         let topicName;
         let newTodo; 
         if (topicId==null)
@@ -110,31 +101,40 @@ function validateInputs(event)
             topicName = newTopicInput.value;
             if(topicName!="")
             {
+                
                 let found = findTopicByName(topicName);
                 if(found==null)
                 {
+                    console.log("new topic created from text")
                     newTodo = new ToDo(newTitle,newDescription,new Topic(topicName),newDate);
                 }
                 else{
+                    console.log("old topic was found from text")
                     newTodo = new ToDo(newTitle,newDescription,found,newDate);
                 }
                
             }
             else
             {
+                console.log("topic name was null")
                 newTodo = new ToDo(newTitle,newDescription,null,newDate);
             }
         }
         else
         {
-            newTodo = new ToDo(newTitle,newDescription,topics[id],newDate);
+
+            console.log("radio clicked")
+            console.log(topics[topicId])
+            newTodo = new ToDo(newTitle, newDescription, {'id':topicId, 'name':topics[topicId]}, newDate);
         }
         if(newTodo)
         {
             
             allTodos.push(newTodo);
-            populateTopics();
             localStorage.setItem('todos', JSON.stringify(allTodos));
+            console.log("all todos")
+            console.log(allTodos)
+            populateTopics();
             event.preventDefault();
             location.reload();
             return true;
@@ -154,7 +154,8 @@ function validateTitle()
 }
 
 
-document.getElementById("save-btn").addEventListener("click",validateInputs);
+
+// document.getElementById("save-btn").addEventListener("click",validateInputs);
 document.getElementById("todo-form").addEventListener("submit",(event)=>{validateInputs(event)});
 
 function checkIfSelected()
@@ -166,17 +167,26 @@ function checkIfSelected()
             if (input.checked)
             {
                 newTopicInput.value = "";
-                return input.id;
             }
         });
         
     }
-    return null;
-
 }
 
+function radioFunctionality()
+{
+    let inputs = topicsDiv.children;
+    for (let input of inputs)
+    {
+            if (input.checked)
+            {
+                return input.id;
+            }
+        
+    }
+    return null;
+}
 
-// checkIfSelected();
 
 function typeTopic()
 {
@@ -201,5 +211,3 @@ function findTopicByName(tName)
     }
     return null;
 }
-
-// typeTopic();

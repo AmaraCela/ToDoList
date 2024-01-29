@@ -13,19 +13,21 @@ function fetchTopics()
 {
     for(const element of allTodos)
     {
+        if(element.topic)
+        {
         if(!topics[element.topic.id])
         {
             topics[element.topic.id] = element.topic.name;
+        }
         }
     }
 }
 
 fetchTopics();
 displayContent(-2);
-
+sideDiv.innerHTML = '';
 for (let [id,name] of Object.entries(topics))
 {
-    sideDiv.innerHTML = '';
     let p = document.createElement("p");
     p.classList.add("side-link");
     p.innerText = name;
@@ -40,6 +42,7 @@ for(let link of sideLinks)
         displayContent(link.id);
     })
 }
+
 function displayContent(id)
 {
 
@@ -49,7 +52,9 @@ function displayContent(id)
     {
         mainTitle.innerText = "Today's tasks";
        loadTodaysTasks();
+       
        toDosToDisplay = todaysTaks;
+       console.log(toDosToDisplay);
     }
     else if(id=="-1")
     {
@@ -174,13 +179,13 @@ function deleteTasks()
         button.addEventListener("click",()=>{
             let id = button.classList[1];
             let position = findPosition(id);
-            let topic = allTodos[position].topic.id;
+            // let topic = allTodos[position].topic.id;
             if(position!=null)
             {
                 allTodos.splice(position,1);
                 localStorage.setItem('todos', JSON.stringify(allTodos));
                 fetchTopics();
-                displayContent(topic);
+                displayContent("-2");
             }
         });
     }
@@ -189,6 +194,7 @@ function deleteTasks()
 function loadTodaysTasks()
 {
     todaysTaks = [];
+    console.log(allTodos);
     for(const element of allTodos)
     {
         let date = new Date(element.date);
