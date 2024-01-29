@@ -1,0 +1,1 @@
+This repository contains a simple To Do list app, that allows users to perform actions such as adding new To Dos and modifying their completion status. Users have the possibility to add a description and a time due for each of the To Dos, as well as divide them into topics for easier access. 
