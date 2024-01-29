@@ -53,9 +53,9 @@ p{
 .side-div{
     width: 20%;
     background-color: rgba(129, 141, 146, 0.55);
-    display: grid;
-    height: 90vh;
-
+    display: flex;
+    height: 460px;
+    flex-direction: column;
 }
 
 .side-link{
@@ -96,6 +96,7 @@ p{
 
 #topics-div{
     display: none;
+    margin-top: 15px;
 }
 
 #expand-div{
