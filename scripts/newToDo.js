@@ -1,11 +1,10 @@
 import { Topic, ToDo, allTodos } from "./toDos.js";
 
-let topicCheckbox = document.getElementById("include-topic");
-let topicsDiv = document.getElementById("add-to-topics-div");
-let newTopicInput = document.getElementById("new-topic");
+const topicCheckbox = document.getElementById("include-topic");
+const topicsDiv = document.getElementById("add-to-topics-div");
+const newTopicInput = document.getElementById("new-topic");
 let topics ={};
 
-// localStorage.clear();
 
 function fetchTopics()
 {
@@ -27,13 +26,13 @@ function populateTopics()
     clearTopics();
     fetchTopics();
     
-    for(let [id,name] of Object.entries(topics))
+    for(const [id,name] of Object.entries(topics))
     {   
-        let input = document.createElement("input");
+        const input = document.createElement("input");
         input.type = "radio";
         input.id = id;
         input.classList.add("topic-input");
-        let label = document.createElement("label");
+        const label = document.createElement("label");
         label.for = id;
         label.innerText = name;
         label.classList.add("topic-input");
@@ -49,8 +48,8 @@ function populateTopics()
 populateTopics();
 
 function clearTopics() {
-    let children = Array.from(document.getElementsByClassName("topic-input"));
-    for (let child of children) {
+    const children = Array.from(document.getElementsByClassName("topic-input"));
+    for (const child of children) {
         topicsDiv.removeChild(child);
     }
 }
@@ -77,9 +76,9 @@ function checkboxClick()
 checkboxClick();
 
 
-let title = document.getElementById("title-input");
-let description = document.getElementById("description-input");
-let date = document.getElementById("date");
+const title = document.getElementById("title-input");
+const description = document.getElementById("description-input");
+const date = document.getElementById("date");
 let newTitle;
 
 
@@ -87,17 +86,16 @@ function validateInputs(event)
 {
     if(validateTitle())
     {
-        let newDescription = description.value;
-        let newDate = date.value;
-        let topicId = radioFunctionality();
-        let topicName;
+        const newDescription = description.value;
+        const newDate = date.value;
+        const topicId = radioFunctionality();
+        const topicName = newTopicInput.value;;
         let newTodo; 
         if (topicId==null)
         {
-            topicName = newTopicInput.value;
             if(topicName!="")
             {
-                let found = findTopicByName(topicName);
+                const found = findTopicByName(topicName);
                 if(found==null)
                 {
                     newTodo = new ToDo(newTitle,newDescription,new Topic(topicName),newDate);
@@ -123,13 +121,10 @@ function validateInputs(event)
             allTodos.push(newTodo);
             localStorage.setItem('todos', JSON.stringify(allTodos));
             populateTopics();
-            event.preventDefault();
-            location.reload();
             return true;
         }
         
     }
-
     event.preventDefault();
     return false;
 }
@@ -138,8 +133,19 @@ function validateInputs(event)
 function validateTitle()
 {
     newTitle = title.value;
-    return newTitle.length >= 1;
+    if(newTitle.length>=1)
+    {
+        for(const todo of allTodos)
+        {
+            if(todo.name==newTitle)
+            {
+                return false;
+            }
+        }
+    }
+    return true;
 }
+
 document.getElementById("todo-form").addEventListener("submit",(event)=>{validateInputs(event)});
 
 function checkIfSelected()
