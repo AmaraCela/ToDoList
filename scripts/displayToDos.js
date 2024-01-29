@@ -236,6 +236,17 @@ function enablePopup()
             else{
                 p.innerText = description;
             }
+
+            let p1 = document.getElementById("due-date");
+            if(foundTodo.date)
+            {
+                let date = new Date(foundTodo.date)
+                p1.innerText = "Due date for the task: "+date.toDateString();
+            }
+            else{
+                p1.innerText = "No due date set"
+            }
+
             (document.getElementsByClassName("popup")[0]).style.display = "block";
             
         });

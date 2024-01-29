@@ -162,6 +162,11 @@ p{
     margin-right: 10px;
 }
 
+#due-date{
+    position: relative;
+    bottom: -200px;
+    right: -90px;
+}
 @media screen and (max-width:810px) {
     .side-div{
         width: 30%;
@@ -182,5 +187,3 @@ p{
         font-size: 15px;
     }
 }
-
-/*add to do page*/

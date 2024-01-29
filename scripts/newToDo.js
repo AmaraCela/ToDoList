@@ -7,7 +7,6 @@ let topics ={};
 
 // localStorage.clear();
 
-
 function fetchTopics()
 {
     topics = {};
@@ -22,8 +21,6 @@ function fetchTopics()
         }
     }
 }
-
-
 
 function populateTopics()
 {
