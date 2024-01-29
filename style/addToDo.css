@@ -89,6 +89,10 @@ body{
     
 }
 
+.inputs{
+    width: 70%;
+}
+
 #include-topic{
     width: fit-content;
     margin: 0;

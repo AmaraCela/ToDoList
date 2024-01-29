@@ -4,7 +4,7 @@ let topicsDiv = document.getElementById("topics-div");
 
 function rotateArrow()
 {
-    if(window.getComputedStyle(arrow).transform=="none")
+    if(window.getComputedStyle(arrow).transform == "none")
     {
         arrow.style.transform = "rotate(45deg)";
     }
